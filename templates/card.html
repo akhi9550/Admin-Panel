@@ -1,0 +1,13 @@
+{{define "user-card"}}
+<div class="card ind-card" style="width: 20rem">
+  <div class="card-body">
+    <h5 class="card-title">{{.UserName}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{.Email}}</h6>
+    <a 
+      href="/adminupdate?Username={{.UserName}}&Email={{.Email}}"  class="card-link">Update</a
+    >
+
+    <a href="/admindelete?Email={{.Email}}" class="card-link">Delete</a>
+  </div>
+</div>
+{{end}}

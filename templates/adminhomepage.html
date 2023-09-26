@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      .user-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1fr;
+      }
+
+      .ind-card {
+        justify-self: center;
+      }
+
+      form {
+        width: 50%;
+      }
+
+      .form-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 18rem;
+      }
+
+      h3 {
+        text-align: center;
+        font-weight: 700;
+      }
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body >
+    <section class="navigation-bar">
+      <div class="container">
+        <nav
+          class="mb-4 navbar navbar-expand-lg navbar-light bg-light navigation"
+        >
+          <a class="navbar-brand" href="#">ADMIN NAME : {{.title.Name}}</a>
+
+          <a class="nav-link" href="/logoutadmin" class="btn btn-primary">Logout<span class="sr-only">(current)</span></a>
+        </nav>
+
+        <h3 class="mt-4">USER DETAILS</h3>
+
+        <div class="user-container mb-4">
+          {{range .title.Users}} {{template "user-card" .}} {{end}}
+        </div>
+        <h3 class="mt-4">ADD USER</h3>
+        <div class="form-container">
+          <form  method="post">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Name" class="form-label">name</label>
+                    <input type="text" class="form-control" id="name" name="Name" placeholder="Enter  name">
+                    <div  id="error-message" style="color: #f30606;">{{.title.Invalid.NameError}}</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="Email" placeholder="Enter your Email">
+                <div id="error-message" style="color: #f30606;">{{.title.Invalid.EmailError}}</div>
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label"> Password</label>
+                <input type="password" class="form-control" id="password" name="Password" placeholder=" Password">
+                <div id="error-message" style="color: #f30606;">{{.title.Invalid.PasswordError}}</div>
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                name="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1">Admin</label>
+            </div>
+            <button type="submit" class="btn btn-primary">add</button>
+            <div id="error-message" style="color: #f30606;">{{.title.Invalid.CommonError}}</div>
+        </form>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    >
+  </script>
+      <script>
+        // Function to remove the error message after 3 seconds (adjust the time as needed)
+        function removeErrorMessage() {
+          var errorMessage = document.getElementById('error-message');
+          if (errorMessage) {
+            errorMessage.style.display = 'none';
+          }
+        }
+
+        // Remove the error message after 3000 milliseconds (3 seconds)
+        setTimeout(removeErrorMessage, 3000);
+      </script>
+  </body>
+</html>
